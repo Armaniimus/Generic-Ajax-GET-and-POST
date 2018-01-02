@@ -93,7 +93,7 @@ const ajax_module = (function() {
         handleAjax(sendmode, url, selectorObject, callbackFunc, payload, cache);
     };
 
-    function postJson(url, selectorObject, callbackFunc, payload, cache) {
+    function putJson(url, selectorObject, callbackFunc, payload, cache) {
         sendmode = ["PUT", "application/json"];
 
         if (selectorObject) {
@@ -129,7 +129,7 @@ const ajax_module = (function() {
         }),
 
         postJson: (function (url, selectorObject, callbackFunc, payload, cache) {
-            postJson (url, selectorObject, callbackFunc, payload, cache);
+            putJson (url, selectorObject, callbackFunc, payload, cache);
         }),
         postFile: (function (url, selectorObject, callbackFunc, payload, cache) {
             postFile (url, selectorObject, callbackFunc, payload, cache);
