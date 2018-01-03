@@ -9,7 +9,6 @@ const ajax_module = (function() {
                 response = xhr.responseText
             }
             else {
-                alert('Request failed.  Returned status of ' + xhr.status);
             }
         };
 
@@ -17,7 +16,6 @@ const ajax_module = (function() {
          Open request by the defined url
         ********************************/
         xhr.open(sendMode[0], (url + selectorObject), 1);
-
 
         /************
          Set Headers
@@ -54,7 +52,6 @@ const ajax_module = (function() {
 
             } else if (count > 120) {
                 clearInterval(AsyncWait);
-                console.log(count)
             }
         }, 250);
     };
@@ -88,8 +85,6 @@ const ajax_module = (function() {
         }
 
         payload = urlEncode(payload);
-        console.log(payload);
-
         handleAjax(sendmode, url, selectorObject, callbackFunc, payload, cache);
     };
 
@@ -103,7 +98,6 @@ const ajax_module = (function() {
         }
 
         payload = JSON.stringify(payload);
-
         handleAjax(sendmode, url, selectorObject, callbackFunc, payload, cache);
     };
 
@@ -115,11 +109,6 @@ const ajax_module = (function() {
 
 
     return {
-        // get:           get (url, selectorObject, callbackFunc, cache),
-        // post:         post (url, selectorObject, callbackFunc, payload, cache),
-        // postJson: postJson (url, selectorObject, callbackFunc, payload, cache),
-        // postFile: postFile (url, selectorObject, callbackFunc, payload, cache),
-
         get: (function (url, selectorObject, callbackFunc, cache) {
             get (url, selectorObject, callbackFunc, cache);
         }),
@@ -136,18 +125,3 @@ const ajax_module = (function() {
         }),
     }
 }) ();
-
-
-let callback = function(response) {
-    console.log(response);
-};
-
-let object = {json:1}
-let object2 = {id:5, name:"fernando"}
-// ajax_module.get("respond.php", object, ,1)
-
-// ajax_module.post("respond.php", false, callback, object2, 1);
-
-ajax_module.postJson("respond.php", object, callback, object2, 1);
-
-// console.log( urlEncode(object) )
