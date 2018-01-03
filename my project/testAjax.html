@@ -5,7 +5,21 @@
         <title></title>
     </head>
     <body>
-        
         <script src="ajax_module.js"></script>
+        <script>
+            let callback = function(response) {
+                console.log(response);
+            };
+
+            let object = {json:1}
+            let object2 = {id:5, name:"fernando"}
+            // ajax_module.get("respond.php", object, ,1)
+
+            // ajax_module.post("respond.php", false, callback, object2, 1);
+
+            ajax_module.postJson("respond.php", object, callback, object2, 1);
+
+            // console.log( urlEncode(object) )
+        </script>
     </body>
 </html>
