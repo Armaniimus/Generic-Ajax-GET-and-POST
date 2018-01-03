@@ -9,6 +9,8 @@ const ajax_module = (function() {
                 response = xhr.responseText
             }
             else {
+                response = false;
+                console.log('Ajax Request failed.  Returned status of ' + xhr.status);
             }
         };
 
@@ -44,14 +46,20 @@ const ajax_module = (function() {
         ajaxRequest(sendMode, url, selectorObject, payload, cache);
         let AsyncWait = setInterval(function () {
             if (response !== "") {
-
-                if (callbackFunc) {
-                    callbackFunc(response)
+                if (response) {
+                    if (callbackFunc) {
+                        callbackFunc(response)
+                    }
                 }
                 clearInterval(AsyncWait);
 
-            } else if (count > 120) {
+            } else if (count >= 120) {
                 clearInterval(AsyncWait);
+                console.log("ajax response timed out");
+
+            } else {
+                count ++
+                console.log("waits for an ajax response to use a callback on test " + count + "/120");
             }
         }, 250);
     };
@@ -117,9 +125,10 @@ const ajax_module = (function() {
             post (url, selectorObject, callbackFunc, payload, cache);
         }),
 
-        postJson: (function (url, selectorObject, callbackFunc, payload, cache) {
+        putJson: (function (url, selectorObject, callbackFunc, payload, cache) {
             putJson (url, selectorObject, callbackFunc, payload, cache);
         }),
+        
         postFile: (function (url, selectorObject, callbackFunc, payload, cache) {
             postFile (url, selectorObject, callbackFunc, payload, cache);
         }),
