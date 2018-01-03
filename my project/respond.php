@@ -10,7 +10,6 @@ if (isset($_POST) ) {
         $temp = json_decode(file_get_contents('php://input'), true);
         $temp["monkey"] = "awsome";
         echo json_encode($temp);
-        // print_r($_POST);
     }
 }
 else if (isset($_GET["id"])) {
